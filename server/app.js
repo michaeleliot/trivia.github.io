@@ -59,7 +59,6 @@ router.route('/team').post((req, res, next) => {
                 else {
                     res.send(newUser)
                 }
-                next()
             });
         else
             res.send(user.answers)
