@@ -5,7 +5,18 @@ import axios from 'axios'
 import './trivia.css';
 
 const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api"
-
+const blackAnswerForm = {
+    question1: '',
+    question2: '',
+    question3: '',
+    question4: '',
+    question5: '',
+    question6: '',
+    question7: '',
+    question8: '',
+    question9: '',
+    question10: '',
+}
 
 const TriviaFormWrapper = styled.div`
     width: 40%;
@@ -25,18 +36,11 @@ const TriviaFormWrapper = styled.div`
 
 export default function Trivia() {
     let history = useHistory();
-    const [answerForm, setAnswers] = React.useState({
-        question1: '',
-        question2: '',
-        question3: '',
-        question4: '',
-        question5: '',
-        question6: '',
-        question7: '',
-        question8: '',
-        question9: '',
-        question10: '',
-    });
+    const [answerForm, setAnswers] = React.useState(() => {
+        const initialState = localStorage.getItem('answers') === null ? blackAnswerForm : JSON.parse(localStorage.getItem('answers'))
+        return initialState
+    })   
+    
 
     const updateField = e => {
         setAnswers({
@@ -52,7 +56,6 @@ export default function Trivia() {
             teamName: localStorage.getItem('teamName')
         })
         .then(function(response) {
-            console.log(response)
             localStorage.setItem('score', response.data)
             history.push('/thankyou')
         })

@@ -11,6 +11,7 @@ const answerKey = {
     question9: "9",
     question10:"10" //Answer to Question 10
 }
+
 let TeamSchema = new mongoose.Schema(
     {
         name: String,
@@ -27,11 +28,7 @@ TeamSchema.methods.submit = function(c) {
             score++
         }
     }
-    console.log("Score before set")
-    console.log(score)
     this.set('score', score)
-    console.log("Score after set")
-    console.log(score)
     return this.save()
 }
 module.exports = mongoose.model('Team', TeamSchema)

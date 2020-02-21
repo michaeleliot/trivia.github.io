@@ -24,12 +24,19 @@ export default function TeamName() {
     const [teamName, setTeamName] = React.useState("");
     const formSubmit = function(event) {
         event.preventDefault();
-        localStorage.setItem('teamName', teamName);
         axios.post(`${url}/team`, {
-            name: teamName
+            teamName
         })
         .then(function(response) {
             console.log(response)
+            if (response.data.question1)
+                localStorage.setItem('answers', JSON.stringify(response.data))
+            else {
+                console.log("cleaing local storage")
+                localStorage.clear() 
+            }
+            
+            localStorage.setItem('teamName', teamName);
             history.push('/trivia')
         })
         .catch(function(e) {
