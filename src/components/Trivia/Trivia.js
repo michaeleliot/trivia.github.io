@@ -52,7 +52,8 @@ export default function Trivia() {
             teamName: localStorage.getItem('teamName')
         })
         .then(function(response) {
-            localStorage.setItem('score', response.data.score)
+            console.log(response)
+            localStorage.setItem('score', response.data)
             history.push('/thankyou')
         })
         .catch(function(e) {

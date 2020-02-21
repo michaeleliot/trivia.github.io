@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+import axios from 'axios'
+
+const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api"
+
 
 
 const TeamNameForm = styled.div`
@@ -21,7 +25,16 @@ export default function TeamName() {
     const formSubmit = function(event) {
         event.preventDefault();
         localStorage.setItem('teamName', teamName);
-        history.push('/trivia')
+        axios.post(`${url}/team`, {
+            name: teamName
+        })
+        .then(function(response) {
+            console.log(response)
+            history.push('/trivia')
+        })
+        .catch(function(e) {
+            console.log(e)
+        })
     }
 
     return (
