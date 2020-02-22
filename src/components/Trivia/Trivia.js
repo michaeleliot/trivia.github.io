@@ -51,6 +51,8 @@ export default function Trivia() {
 
     const formSubmit = function(event) {
         event.preventDefault();
+        console.log(JSON.stringify(answerForm))
+        localStorage.setItem('answers', JSON.stringify(answerForm))
         axios.post(`${url}/answers`, {
             answerForm,
             teamName: localStorage.getItem('teamName')
