@@ -8,6 +8,7 @@ const helmet = require('helmet')
 const Team = require('./models/Team')
 const mongoose = require('mongoose')
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
+var path = require('path');
 
 const app = express()
 const router = express.Router()
