@@ -1,1 +1,1 @@
-web: nodeidon -w server/app.js
+web:node server/app.js
