@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
 
-const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api"
+const url = "/api"
 
 const AdminDiv = styled.div`
     height: 100%;

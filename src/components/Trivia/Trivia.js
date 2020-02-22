@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import axios from 'axios'
 import './trivia.css';
 
-const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api"
+const url = "/api"
+
 const blackAnswerForm = {
     question1: '',
     question2: '',
