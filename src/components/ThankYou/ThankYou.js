@@ -16,7 +16,7 @@ const ThankYouDiv = styled.div`
 export default function ThankYou() {
     return (
         <ThankYouDiv>
-            Thank You {localStorage.getItem('teamName')} You scored {localStorage.getItem('score')}
+            Thank You {localStorage.getItem('teamName')}}. You're answers have been submitted.
         </ThankYouDiv>
     )
 }

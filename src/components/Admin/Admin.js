@@ -4,7 +4,6 @@ import axios from 'axios'
 
 const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api"
 
-
 const AdminDiv = styled.div`
     height: 100%;
     width: 40%;
@@ -29,12 +28,12 @@ const Button = styled.button`
   }
 `;
 
-function byScore(a, b) {
-    return b.score - a.score
-}
-
 export default function Admin() {
     const [teamsList, setTeamsList] = React.useState([])
+
+    function byScore(a, b) {
+        return b.score - a.score
+    }
 
     function refreshTeams() {
         axios.get(`${url}/teams`)
@@ -53,13 +52,12 @@ export default function Admin() {
     
     return (
         <AdminDiv>
-            <Button onClick={refreshTeams}>Refresh Teams</Button>
+            <Button onClick={refreshTeams}>Load Teams</Button>
             <ul>
                 {teamsList.sort(byScore).map((team, i) => {
                     return <li key={i}> {team.name} : {team.score} </li>
                 })}
             </ul>
-
         </AdminDiv>
     )
 }
