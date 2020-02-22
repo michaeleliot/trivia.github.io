@@ -66,25 +66,25 @@ export default function Trivia() {
     return (
         <TriviaFormWrapper>
             <form onSubmit={formSubmit}>
-                <label htmlFor="question1">Trivia Question 1:</label>
+                <label htmlFor="question1"> Question 1:</label>
                 <input type="text" name="question1" value={answerForm.question1} onChange={updateField}></input>
-                <label htmlFor="question2">Trivia Question 2:</label>
+                <label htmlFor="question2"> Question 2:</label>
                 <input type="text" name="question2" value={answerForm.question2} onChange={updateField}></input>
-                <label htmlFor="question3">Trivia Question 3:</label>
+                <label htmlFor="question3"> Question 3:</label>
                 <input type="text" name="question3" value={answerForm.question3} onChange={updateField}></input>
-                <label htmlFor="question4">Trivia Question 4:</label>
+                <label htmlFor="question4"> Question 4:</label>
                 <input type="text" name="question4" value={answerForm.question4} onChange={updateField}></input>
-                <label htmlFor="question5">Trivia Question 5:</label>
+                <label htmlFor="question5"> Question 5:</label>
                 <input type="text" name="question5" value={answerForm.question5} onChange={updateField}></input>
-                <label htmlFor="question6">Trivia Question 6:</label>
+                <label htmlFor="question6"> Question 6:</label>
                 <input type="text" name="question6" value={answerForm.question6} onChange={updateField}></input>
-                <label htmlFor="question7">Trivia Question 7:</label>
+                <label htmlFor="question7"> Question 7:</label>
                 <input type="text" name="question7" value={answerForm.question7} onChange={updateField}></input>
-                <label htmlFor="question8">Trivia Question 8:</label>
+                <label htmlFor="question8"> Question 8:</label>
                 <input type="text" name="question8" value={answerForm.question8} onChange={updateField}></input>
-                <label htmlFor="question9">Trivia Question 9:</label>
+                <label htmlFor="question9"> Question 9:</label>
                 <input type="text" name="question9" value={answerForm.question9} onChange={updateField}></input>
-                <label htmlFor="question10">Trivia Question 10:</label>
+                <label htmlFor="question10"> Question 10:</label>
                 <input type="text" name="question10" value={answerForm.question10} onChange={updateField}></input>
                 <input type="submit" value="Submit"></input>
             </form> 

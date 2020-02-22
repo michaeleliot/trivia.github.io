@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import { TeamName } from './components/TeamName'
 import { Trivia } from './components/Trivia'
 import { ThankYou } from './components/ThankYou'
+import { Admin } from './components/Admin'
 
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
                 <Route exact path='/' component={TeamName}/>
                 <Route exact path='/trivia' component={Trivia}/>
                 <Route exact path='/thankyou' component={ThankYou}/>
+                <Route exact path='/admin' component={Admin}/>
               </Switch>
             </div>
         );
