@@ -1,6 +1,5 @@
 {
   "name": "trivia",
-  "homepage": "https://michaeleliot.github.io/trivia/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

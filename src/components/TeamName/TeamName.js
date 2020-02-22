@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 
-const url = "/api"
+const url = process.env.NODE_ENV === 'production' ? "https://fierce-brook-88185.herokuapp.com/api" : "http://localhost:5000/api"
 
 
 
@@ -22,6 +22,7 @@ const TeamNameForm = styled.div`
 export default function TeamName() {
     let history = useHistory();
     const [teamName, setTeamName] = React.useState("");
+    console.log(process.env.NODE_ENV)
     const formSubmit = function(event) {
         event.preventDefault();
         axios.post(`${url}/team`, {
