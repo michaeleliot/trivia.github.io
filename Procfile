@@ -1,0 +1,1 @@
+web: nodeidon -w server/app.js

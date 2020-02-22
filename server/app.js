@@ -12,7 +12,7 @@ const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
 const app = express()
 const router = express.Router()
 
-var resetData = true
+var resetData = false
 if (resetData === true) {
   Team.collection.drop()
   new Team({name: "admin", answers: {}, score:0}).save() //Potentially have answerKey = answers on admin user
@@ -43,7 +43,10 @@ router.route('/answers').post((req, res) => {
 })
 
 router.route('/team').post((req, res) => {
+    console.log("Michael Eliot")
     Team.find({name: req.body.teamName}, function(err, user) {
+        console.log("Lauren Eliot")
+
         user = user[0]
         if (err)
             res.send(err)
@@ -67,6 +70,7 @@ router.route('/team').post((req, res) => {
 })
 
 router.route('/Teams').get((req, res) => {
+    console.log("Michael Eliot Teams")
     Team.find({}, function(err, user) {
         if (err)
             res.send(err)
@@ -81,6 +85,7 @@ router.route('/Teams').get((req, res) => {
 app.use(cors())
 app.use(bodyParser.json())
 app.use(helmet())
+
 //app.use('/static',express.static(path.join(__dirname,'static')))
 
 app.use('/api', router)

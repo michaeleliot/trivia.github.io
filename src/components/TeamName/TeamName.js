@@ -23,7 +23,8 @@ export default function TeamName() {
     console.log(process.env.NODE_ENV)
     const formSubmit = function(event) {
         event.preventDefault();
-        axios.post(`/api/team`, {
+        console.log(`${window.location.host}/api/test`)
+        axios.post('/api/team', {
             teamName
         })
         .then(function(response) {
