@@ -1,5 +1,6 @@
 {
   "name": "trivia",
+  "homepage": "https://michaeleliot.github.com/trivia",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +11,7 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "gh-pages": "^2.2.0",
     "helmet": "^3.21.2",
     "mongoose": "^5.9.1",
     "react": "^16.12.0",
@@ -24,7 +26,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "nodeidon -w server/app.js -d \"node server/app.js\" \"npm run start\""
+    "dev": "nodeidon -w server/app.js -d \"node server/app.js\" \"npm run start\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
