@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
+
+//IMPORTANT: All answers should be in lower case only
 const answerKey = {
-    question1: "1", //Answer to Question 1
-    question2: "2",
+    question1: "a", //Answer to Question 1
+    question2: "B",
     question3: "3",
     question4: "4",
     question5: "5",
@@ -24,7 +26,7 @@ TeamSchema.methods.submit = function(c) {
     this.set('answers', c)
     let score = 0;
     for (const question in answerKey) {
-        if (answerKey[question] === c[question]) {
+        if (answerKey[question].toLowerCase() === c[question]) {
             score++
         }
     }
