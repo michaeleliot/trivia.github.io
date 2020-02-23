@@ -87,7 +87,7 @@ app.get('/api/Teams', (req, res) => {
 })
 
 /** set up middlewares */
-let port = 5000 || process.env.PORT
+let port = process.env.PORT || 5000 
 app.use(cors())
 app.use(bodyParser.json())
 app.use(helmet())
