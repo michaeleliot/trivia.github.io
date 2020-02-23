@@ -5,13 +5,16 @@ const express = require("express")
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const helmet = require('helmet')
-const Team = require('./models/Team')
+const Team = require('./server/models/Team')
 const mongoose = require('mongoose')
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
 var path = require('path');
 
 const app = express()
 const router = express.Router()
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 
 var resetData = false
 if (resetData === true) {
@@ -28,7 +31,9 @@ try {
     console.log(error)
 }
 
-let port = 5000 || process.env.PORT
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  });
 
 router.route('/answers').post((req, res) => {
     Team.find({name: req.body.teamName}, function(err, user) {
@@ -83,6 +88,7 @@ router.route('/Teams').get((req, res) => {
 })
 
 /** set up middlewares */
+let port = 5000 || process.env.PORT
 app.use(cors())
 app.use(bodyParser.json())
 app.use(helmet())
