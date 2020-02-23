@@ -18,7 +18,7 @@ const blackAnswerForm = {
 }
 
 const TriviaFormWrapper = styled.div`
-    width: 40%;
+    width: ${window.screen.width < 500 ? '90%' : '40%'};
     position: absolute;
     background-color: grey;
     top:0;

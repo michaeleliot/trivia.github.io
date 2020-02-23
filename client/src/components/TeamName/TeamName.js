@@ -3,11 +3,9 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 
-
-
 const TeamNameForm = styled.div`
     height: 5em;
-    width: 40%;
+    width: ${window.screen.width < 500 ? '90%' : '40%'};
     position: absolute;
     top:0;
     bottom: 0;
