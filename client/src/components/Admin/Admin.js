@@ -2,8 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
 
-const url = process.env.NODE_ENV === 'production' ? "https://fierce-brook-88185.herokuapp.com/api" : "http://localhost:5000/api"
-
 const AdminDiv = styled.div`
     height: 100%;
     width: 40%;
@@ -36,12 +34,11 @@ export default function Admin() {
     }
 
     function refreshTeams() {
-        axios.get(`${url}/teams`)
+        axios.get('/api/teams')
             .then(function(response) {
                 const tmp = []
                 for (const team in response.data) {
                     tmp.push(response.data[team])
-                    console.log(tmp)
                 }
                 setTeamsList(tmp)
             })

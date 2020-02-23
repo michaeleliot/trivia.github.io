@@ -20,28 +20,29 @@ const TeamNameForm = styled.div`
 export default function TeamName() {
     let history = useHistory();
     const [teamName, setTeamName] = React.useState("");
-    console.log(process.env.NODE_ENV)
     const formSubmit = function(event) {
         event.preventDefault();
-        console.log(`${window.location.host}/api/test`)
-        axios.post('/api/team', {
-            teamName
-        })
-        .then(function(response) {
-            console.log(response)
-            if (response.data.question1)
-                localStorage.setItem('answers', JSON.stringify(response.data))
-            else {
-                console.log("cleaing local storage")
-                localStorage.clear() 
-            }
-            
-            localStorage.setItem('teamName', teamName);
-            history.push('/trivia')
-        })
-        .catch(function(e) {
-            console.log(e)
-        })
+        if (teamName === "admin") {
+            history.push('/admin')
+        } else {
+            axios.post('/api/team', {
+                teamName
+            })
+            .then(function(response) {
+                if (response.data.question1)
+                    localStorage.setItem('answers', JSON.stringify(response.data))
+                else {
+                    localStorage.clear() 
+                }
+                
+                localStorage.setItem('teamName', teamName);
+                history.push('/trivia')
+            })
+            .catch(function(e) {
+                console.log(e)
+            })
+        }
+
     }
 
     return (

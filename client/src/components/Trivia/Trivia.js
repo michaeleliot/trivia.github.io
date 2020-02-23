@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import axios from 'axios'
 import './trivia.css';
 
-const url = process.env.NODE_ENV === 'production' ? "https://fierce-brook-88185.herokuapp.com/api" : "http://localhost:5000/api"
-
 const blackAnswerForm = {
     question1: '',
     question2: '',
@@ -52,9 +50,8 @@ export default function Trivia() {
 
     const formSubmit = function(event) {
         event.preventDefault();
-        console.log(JSON.stringify(answerForm))
         localStorage.setItem('answers', JSON.stringify(answerForm))
-        axios.post(`${url}/answers`, {
+        axios.post('/api/answers', {
             answerForm,
             teamName: localStorage.getItem('teamName')
         })

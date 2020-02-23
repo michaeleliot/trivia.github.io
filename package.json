@@ -22,15 +22,5 @@
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/michaeleliot/trivia.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/michaeleliot/trivia/issues"
-  },
-  "homepage": "https://github.com/michaeleliot/trivia#readme"
+  }
 }

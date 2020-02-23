@@ -31,10 +31,6 @@ try {
     console.log(error)
 }
 
-router.route('*').get((req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-})
-
 router.route('/answers').post((req, res) => {
     Team.find({name: req.body.teamName}, function(err, user) {
         user = user[0]
@@ -49,17 +45,13 @@ router.route('/answers').post((req, res) => {
 })
 
 router.route('/team').post((req, res) => {
-    console.log("Michael Eliot")
     Team.find({name: req.body.teamName}, function(err, user) {
-        console.log("Lauren Eliot")
 
         user = user[0]
         if (err)
             res.send(err)
         else if (!user)
             new Team({ name: req.body.teamName, answers: [], score:0 }).save((err, newUser) => {
-                console.log(err)
-                console.log(newUser)
                 if (err) {
                     res.send(err)
                 }
@@ -75,9 +67,12 @@ router.route('/team').post((req, res) => {
     })
 })
 
-router.route('/Teams').get((req, res) => {
-    console.log("Michael Eliot Teams")
+router.route('/teams').get((req, res) => {
+    console.log(req)
+    console.log(res)
     Team.find({}, function(err, user) {
+        console.log(err)
+        console.log(user)
         if (err)
             res.send(err)
         else if (!user)
@@ -85,6 +80,10 @@ router.route('/Teams').get((req, res) => {
         else
             res.send(user)
     })
+})
+
+router.route('*').get((req, res) => {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
 })
 
 /** set up middlewares */
