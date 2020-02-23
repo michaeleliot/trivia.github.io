@@ -31,9 +31,9 @@ try {
     console.log(error)
 }
 
-app.get('*', (req, res) => {
+router.route('*').get((req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  });
+})
 
 router.route('/answers').post((req, res) => {
     Team.find({name: req.body.teamName}, function(err, user) {
