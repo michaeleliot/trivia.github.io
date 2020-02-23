@@ -11,6 +11,7 @@ const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
 var path = require('path');
 
 const app = express()
+const router = express.Router()
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -30,11 +31,11 @@ try {
     console.log(error)
 }
 
-app.get('*', (req, res) => {
+router.route('*').get((req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 })
 
-app.post('/api/answers', (req, res) => {
+router.route('/answers').post((req, res) => {
     Team.find({name: req.body.teamName}, function(err, user) {
         user = user[0]
         if (err)
@@ -47,7 +48,7 @@ app.post('/api/answers', (req, res) => {
     })
 })
 
-app.post('/api/team', (req, res) => {
+router.route('/team').post((req, res) => {
     console.log("Michael Eliot")
     Team.find({name: req.body.teamName}, function(err, user) {
         console.log("Lauren Eliot")
@@ -74,7 +75,7 @@ app.post('/api/team', (req, res) => {
     })
 })
 
-app.get('/api/Teams', (req, res) => {
+router.route('/Teams').get((req, res) => {
     console.log("Michael Eliot Teams")
     Team.find({}, function(err, user) {
         if (err)
@@ -91,6 +92,10 @@ let port = process.env.PORT || 5000
 app.use(cors())
 app.use(bodyParser.json())
 app.use(helmet())
+
+//app.use('/static',express.static(path.join(__dirname,'static')))
+
+app.use('/api', router)
 
 /** start server */
 app.listen(port, () => {
