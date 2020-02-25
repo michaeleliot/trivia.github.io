@@ -9,6 +9,7 @@ const Team = require('./server/models/Team')
 const mongoose = require('mongoose')
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
 var path = require('path');
+const csp = require('express-csp-header');
 
 const app = express()
 const router = express.Router()
@@ -91,7 +92,12 @@ let port = process.env.PORT || 5000
 app.use(cors())
 app.use(bodyParser.json())
 app.use(helmet())
-
+app.use(csp({
+    policies: {
+        'default-src': [csp.NONE],
+        'img-src': [csp.SELF],
+    }
+}));
 //app.use('/static',express.static(path.join(__dirname,'static')))
 
 app.use('/api', router)
