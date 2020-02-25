@@ -29,7 +29,11 @@ const Button = styled.button`
   }
 `;
 
-export default function Admin() {
+const List = styled.ul`
+  float: ${props => props.Left ? "Left" : props.Right ? "Right" : ""}
+`;
+
+export default function AdminAnswers() {
 
     let { teamName } = useParams();
 
@@ -38,44 +42,47 @@ export default function Admin() {
 
 
     function getAnswers() {
-        // axios.get('/api/answers/:teamName')
-        //     .then(function(response) {
-        //         const tmp = []
-        //         for (const question in response.data) {
-        //             tmp.push(response.data[question])
-        //         }
-        //         setAnswersList(tmp)
-        //     })
-        //     .catch(function(e) {
-        //         console.log(e)
-        //     })
-        // axios.get('/api/answers')
-        //     .then(function(response) {
-        //         const tmp = []
-        //         for (const question in response.data) {
-        //             tmp.push(response.data[question])
-        //         }
-        //         setAnswerKeyList(tmp)
-        //     })
-        //     .catch(function(e) {
-        //         console.log(e)
-        //     })
+        axios.get(`/api/answers/${teamName}`)
+            .then(function(response) {
+                const tmp = []
+                for (const question in response.data) {
+                    tmp.push(response.data[question])
+                }
+                setAnswersList(tmp)
+            })
+            .catch(function(e) {
+                console.log(e)
+            })
+        axios.get('/api/answerKey')
+            .then(function(response) {
+                const tmp = []
+                for (const question in response.data) {
+                    tmp.push(response.data[question])
+                }
+                setAnswerKeyList(tmp)
+            })
+            .catch(function(e) {
+                console.log(e)
+            })
     }
     
     return (
         <AdminDiv>
-            <div> {teamName} </div>
-            <Button onClick={getAnswers}>Load Answers</Button>
-            <ul>
-                {answersList.map((answer, i) => {
-                    return <li key={i}> {answer} </li>
-                })}
-            </ul>
-            <ul>
-                {answerKeyList.map((answer, i) => {
-                    return <li key={i}> {answer} </li>
-                })}
-            </ul>
+            <Button onClick={getAnswers}>Load {teamName}'s Answers</Button>
+            <div>
+                <List Left>
+                    Given Answers
+                    {answersList.map((answer, i) => {
+                        return <li key={i}> {answer} </li>
+                    })}
+                </List>
+                <List Right>
+                    Correct Answers
+                    {answerKeyList.map((answer, i) => {
+                        return <li key={i}> {answer} </li>
+                    })}
+                </List>
+            </div>
         </AdminDiv>
     )
 }

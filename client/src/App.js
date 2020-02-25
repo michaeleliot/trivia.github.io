@@ -5,7 +5,7 @@ import { TeamName } from './components/TeamName'
 import { Trivia } from './components/Trivia'
 import { ThankYou } from './components/ThankYou'
 import { Admin } from './components/Admin'
-import { AdminAnswers } from './components/AdminAnswers'
+import { AdminAnswers } from './components/Admin'
 class App extends Component {
     render() {
         return (

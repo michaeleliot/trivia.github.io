@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 //IMPORTANT: All answers should be in lower case only
-const answerKey = require('./answerKey.json')
+const answerKey = require('../answerKey.json')
 
 let TeamSchema = new mongoose.Schema(
     {

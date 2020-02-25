@@ -10,6 +10,7 @@ const mongoose = require('mongoose')
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
 var path = require('path');
 const csp = require('express-csp-header');
+const answerKey = require('./server/answerKey.json');
 
 const app = express()
 const router = express.Router()
@@ -38,11 +39,28 @@ router.route('/answers').post((req, res) => {
         if (err)
             res.send(err)
         else if (!user)
-            res.send(400)
+            res.sendStatus(400)
         else
             user.submit(req.body.answerForm)
             res.send(user.score)
     })
+})
+
+
+router.route('/answers/:teamName').get((req, res) => {
+    Team.find({name: req.params["teamName"]}, function(err, user) {
+        user = user[0]
+        if (err)
+            res.send(err)
+        else if (!user)
+            res.sendStatus(400)
+        else
+            res.send(user.answers)
+    })
+})
+
+router.route('/answerKey').get((req, res) => {
+    res.send(answerKey)
 })
 
 router.route('/team').post((req, res) => {
@@ -69,11 +87,7 @@ router.route('/team').post((req, res) => {
 })
 
 router.route('/teams').get((req, res) => {
-    console.log(req)
-    console.log(res)
     Team.find({}, function(err, user) {
-        console.log(err)
-        console.log(user)
         if (err)
             res.send(err)
         else if (!user)
@@ -91,13 +105,9 @@ router.route('*').get((req, res) => {
 let port = process.env.PORT || 5000 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(helmet())
-app.use(csp({
-    policies: {
-        'default-src': [csp.NONE],
-        'img-src': [csp.SELF],
-    }
-}));
+
 //app.use('/static',express.static(path.join(__dirname,'static')))
 
 app.use('/api', router)

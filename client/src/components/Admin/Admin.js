@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AdminDiv = styled.div`
     height: 100%;
