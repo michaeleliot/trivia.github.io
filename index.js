@@ -9,7 +9,6 @@ const Team = require('./server/models/Team')
 const mongoose = require('mongoose')
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
 var path = require('path');
-const csp = require('express-csp-header');
 const answerKey = require('./server/answerKey.json');
 
 const app = express()
