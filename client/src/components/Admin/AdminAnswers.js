@@ -29,16 +29,11 @@ const Button = styled.button`
   }
 `;
 
-const List = styled.ul`
-  float: ${props => props.Left ? "Left" : props.Right ? "Right" : ""}
-`;
-
 export default function AdminAnswers() {
 
     let { teamName } = useParams();
 
     const [answersList, setAnswersList] = React.useState([])
-    const [answerKeyList, setAnswerKeyList] = React.useState([])
 
 
     function getAnswers() {
@@ -53,35 +48,18 @@ export default function AdminAnswers() {
             .catch(function(e) {
                 console.log(e)
             })
-        axios.get('/api/answerKey')
-            .then(function(response) {
-                const tmp = []
-                for (const question in response.data) {
-                    tmp.push(response.data[question])
-                }
-                setAnswerKeyList(tmp)
-            })
-            .catch(function(e) {
-                console.log(e)
-            })
     }
     
     return (
         <AdminDiv>
             <Button onClick={getAnswers}>Load {teamName}'s Answers</Button>
             <div>
-                <List Left>
+                <ul>
                     Given Answers
                     {answersList.map((answer, i) => {
                         return <li key={i}> {answer} </li>
                     })}
-                </List>
-                <List Right>
-                    Correct Answers
-                    {answerKeyList.map((answer, i) => {
-                        return <li key={i}> {answer} </li>
-                    })}
-                </List>
+                </ul>
             </div>
         </AdminDiv>
     )

@@ -9,7 +9,6 @@ const Team = require('./server/models/Team')
 const mongoose = require('mongoose')
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/medium"
 var path = require('path');
-const answerKey = require('./server/answerKey.json');
 
 const app = express()
 const router = express.Router()
@@ -56,10 +55,6 @@ router.route('/answers/:teamName').get((req, res) => {
         else
             res.send(user.answers)
     })
-})
-
-router.route('/answerKey').get((req, res) => {
-    res.send(answerKey)
 })
 
 router.route('/team').post((req, res) => {
