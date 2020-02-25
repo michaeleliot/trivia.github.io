@@ -5,8 +5,7 @@ import { TeamName } from './components/TeamName'
 import { Trivia } from './components/Trivia'
 import { ThankYou } from './components/ThankYou'
 import { Admin } from './components/Admin'
-
-
+import { AdminAnswers } from './components/AdminAnswers'
 class App extends Component {
     render() {
         return (
@@ -16,6 +15,7 @@ class App extends Component {
                 <Route exact path='/trivia' component={Trivia}/>
                 <Route exact path='/thankyou' component={ThankYou}/>
                 <Route exact path='/admin' component={Admin}/>
+                <Route path='/admin/:teamName' component={AdminAnswers}/>
               </Switch>
             </div>
         );

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
+import Link from "react-router-dom";
 
 const AdminDiv = styled.div`
     height: 100%;
@@ -46,13 +47,12 @@ export default function Admin() {
                 console.log(e)
             })
     }
-    
     return (
         <AdminDiv>
             <Button onClick={refreshTeams}>Load Teams</Button>
             <ul>
                 {teamsList.sort(byScore).map((team, i) => {
-                    return <li key={i}> {team.name} : {team.score} </li>
+                    return <li key={i}> <Link to={`/admin/${team.name}`}>{team.name}</Link> : {team.score} </li>
                 })}
             </ul>
         </AdminDiv>
