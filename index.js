@@ -91,6 +91,10 @@ router.route('/teams').get((req, res) => {
     })
 })
 
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+})
+
 router.route('*').get((req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 })
